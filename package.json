@@ -1,0 +1,25 @@
+{
+  "name": "js-ipld-eth-state-trie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "aegir-test",
+    "test:browser": "aegir-test --env browser",
+    "test:node": "aegir-test --env node",
+    "lint": "aegir-lint",
+    "release": "aegir-release",
+    "release-minor": "aegir-release --type minor",
+    "release-major": "aegir-release --type major",
+    "build": "aegir-build",
+    "coverage": "aegir-coverage",
+    "coverage-publish": "aegir-coverage publish"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aegir": "^9.3.0",
+    "js-ipld-eth-account-snapshot": "^1.0.1",
+    "js-ipld-eth-trie": "^2.0.0"
+  }
+}
