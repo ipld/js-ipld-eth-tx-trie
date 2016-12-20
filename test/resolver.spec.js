@@ -94,6 +94,21 @@ describe('IPLD format resolver (local)', () => {
       })
     })
   })
+
+  describe('resolver.tree', () => {
+    it.skip('"c" branch node lists account paths', () => {
+      let cBranchNode = dagNodes[4]
+      resolver.tree(cBranchNode, (err, result) => {
+        expect(err).to.not.exist
+        let trieNode = result.value
+        expect(result.remainderPath).to.eql('')
+        expect(isExternalLink(trieNode)).to.eql(false)
+        expect(Buffer.isBuffer(result.value)).to.eql(true)
+        expect(result.value.toString('hex')).to.eql(testContract.codeHash.toString('hex'))
+      })
+    })
+  })
+
 })
 
 function dumpTrieNonInlineNodes(trie, fullNodes, cb){
