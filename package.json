@@ -1,6 +1,6 @@
 {
   "name": "js-ipld-eth-state-trie",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JavaScript Implementation of the IPLD format - Ethereum State Trie",
   "main": "src/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
     "aegir": "^9.3.0",
     "async": "^2.1.4",
     "ipld-eth-account-snapshot": "^1.0.0",
-    "ipld-eth-trie": "^1.0.1"
+    "ipld-eth-trie": "^1.0.2"
   },
   "devDependencies": {
     "chai": "^3.5.0",
