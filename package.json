@@ -1,6 +1,6 @@
 {
-  "name": "js-ipld-eth-state-trie",
-  "version": "1.0.1",
+  "name": "ipld-eth-state-trie",
+  "version": "1.0.0",
   "description": "JavaScript Implementation of the IPLD format - Ethereum State Trie",
   "main": "src/index.js",
   "scripts": {
