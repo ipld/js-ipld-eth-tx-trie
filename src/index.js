@@ -1,4 +1,6 @@
 'use strict'
+/* eslint max-nested-callbacks: ["error", 5] */
+
 const async = require('async')
 const util = require('ipld-eth-trie/src/util.js')
 const resolver = require('ipld-eth-trie/src/resolver.js')
@@ -7,8 +9,6 @@ const IpldEthAccountSnapshotResolver = require('ipld-eth-account-snapshot').reso
 const IpfsBlock = require('ipfs-block')
 
 const trieIpldFormat = 'eth-state-trie'
-const leafIpldFormat = 'eth-account-snapshot'
-
 
 exports.util = {
   deserialize: util.deserialize,
@@ -22,7 +22,7 @@ exports.resolver = {
   resolve: resolve
 }
 
-function resolve(block, path, callback){
+function resolve (block, path, callback) {
   resolver.resolve(trieIpldFormat, block, path, (err, result) => {
     if (err) return callback(err)
     if (isExternalLink(result.value) || result.remainderPath.length === 0) {
@@ -34,14 +34,14 @@ function resolve(block, path, callback){
   })
 }
 
-function tree(block, options, callback){
+function tree (block, options, callback) {
   exports.util.deserialize(block.data, (err, trieNode) => {
     if (err) return callback(err)
     // leaf node
     if (trieNode.type === 'leaf') {
       let block = new IpfsBlock(trieNode.getValue())
       IpldEthAccountSnapshotResolver.tree(block, options, (err, paths) => {
-        if (err) return next(err)
+        if (err) return callback(err)
         callback(null, paths)
       })
       return
@@ -57,7 +57,9 @@ function tree(block, options, callback){
           let block = new IpfsBlock(child.value)
           IpldEthAccountSnapshotResolver.tree(block, options, (err, subpaths) => {
             if (err) return next(err)
-            subpaths.forEach((path) => path.path = key + '/' + path.path)
+            subpaths.forEach((path) => {
+              path.path = key + '/' + path.path
+            })
             paths = paths.concat(subpaths)
           })
         } else {
