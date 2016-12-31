@@ -21,6 +21,7 @@ describe('IPLD format resolver (local)', () => {
   }
   function prepareTestContract (done) {
     testContract = new Account(testContractData)
+    done()
   }
 
   // setup external account test data
@@ -31,6 +32,7 @@ describe('IPLD format resolver (local)', () => {
   }
   function prepareTestExternalAccount (done) {
     testExternalAccount = new Account(testExternalAccountData)
+    done()
   }
 
   // setup test trie
