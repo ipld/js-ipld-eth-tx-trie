@@ -82,7 +82,18 @@ describe('IPLD format resolver (local)', () => {
   })
 
   describe('resolver.resolve', () => {
-    it('"c" branch node resolves down to account data', () => {
+    it('root node resolves to branch', (done) => {
+      let rootNode = dagNodes[0]
+      resolver.resolve(rootNode, '0/0/0/c/0/a/0/0/codeHash', (err, result) => {
+        expect(err).to.not.exist
+        let trieNode = result.value
+        expect(result.remainderPath).to.eql('c/0/a/0/0/codeHash')
+        expect(isExternalLink(trieNode)).to.eql(true)
+        done()
+      })
+    })
+
+    it('"c" branch node resolves down to account data', (done) => {
       let cBranchNode = dagNodes[4]
       resolver.resolve(cBranchNode, 'c/0/a/0/0/codeHash', (err, result) => {
         expect(err).to.not.exist
@@ -91,20 +102,19 @@ describe('IPLD format resolver (local)', () => {
         expect(isExternalLink(trieNode)).to.eql(false)
         expect(Buffer.isBuffer(result.value)).to.eql(true)
         expect(result.value.toString('hex')).to.eql(testContract.codeHash.toString('hex'))
+        done()
       })
     })
   })
 
   describe('resolver.tree', () => {
-    it.skip('"c" branch node lists account paths', () => {
+    it('"c" branch node lists account paths', (done) => {
       let cBranchNode = dagNodes[4]
       resolver.tree(cBranchNode, (err, result) => {
         expect(err).to.not.exist
-        let trieNode = result.value
-        expect(result.remainderPath).to.eql('')
-        expect(isExternalLink(trieNode)).to.eql(false)
-        expect(Buffer.isBuffer(result.value)).to.eql(true)
-        expect(result.value.toString('hex')).to.eql(testContract.codeHash.toString('hex'))
+        let childPaths = result.map(item => item.path)
+        expect(childPaths.includes('balance')).to.eql(true)
+        done()
       })
     })
   })

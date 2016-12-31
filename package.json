@@ -21,7 +21,7 @@
     "aegir": "^9.3.0",
     "async": "^2.1.4",
     "ipld-eth-account-snapshot": "^1.0.0",
-    "ipld-eth-trie": "^1.0.2"
+    "ipld-eth-trie": "^2.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
