@@ -29,5 +29,16 @@
     "ethereumjs-tx": "^1.2.0",
     "ipfs-block": "^0.5.3",
     "merkle-patricia-tree": "^2.1.2"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kumavis/js-ipld-eth-state-trie.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kumavis/js-ipld-eth-state-trie/issues"
+  },
+  "homepage": "https://github.com/kumavis/js-ipld-eth-state-trie#readme"
 }
