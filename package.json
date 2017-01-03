@@ -1,7 +1,7 @@
 {
-  "name": "ipld-eth-state-trie",
-  "version": "1.0.2",
-  "description": "JavaScript Implementation of the IPLD format - Ethereum State Trie",
+  "name": "ipld-eth-tx-trie",
+  "version": "1.0.0",
+  "description": "JavaScript Implementation of the IPLD format - Ethereum Transaction Trie",
   "main": "src/index.js",
   "scripts": {
     "test": "aegir-test",
@@ -20,12 +20,13 @@
   "dependencies": {
     "aegir": "^9.3.0",
     "async": "^2.1.4",
-    "ipld-eth-account-snapshot": "^1.0.0",
-    "ipld-eth-trie": "^2.0.0"
+    "ethereumjs-block": "^1.4.0",
+    "ipld-eth-trie": "^2.0.0",
+    "ipld-eth-tx": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "ethereumjs-account": "^2.0.4",
+    "ethereumjs-tx": "^1.2.0",
     "ipfs-block": "^0.5.3",
     "merkle-patricia-tree": "^2.1.2"
   }

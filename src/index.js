@@ -5,10 +5,10 @@ const async = require('async')
 const util = require('ipld-eth-trie/src/util.js')
 const resolver = require('ipld-eth-trie/src/resolver.js')
 const isExternalLink = require('ipld-eth-trie/src/common').isExternalLink
-const IpldEthAccountSnapshotResolver = require('ipld-eth-account-snapshot').resolver
+const IpldEthTxResolver = require('ipld-eth-tx').resolver
 const IpfsBlock = require('ipfs-block')
 
-const trieIpldFormat = 'eth-state-trie'
+const trieIpldFormat = 'eth-tx-trie'
 
 exports.util = {
   deserialize: util.deserialize,
@@ -30,7 +30,7 @@ function resolve (block, path, callback) {
     }
     // continue to resolve on node
     let block = new IpfsBlock(result.value)
-    IpldEthAccountSnapshotResolver.resolve(block, result.remainderPath, callback)
+    IpldEthTxResolver.resolve(block, result.remainderPath, callback)
   })
 }
 
@@ -40,7 +40,7 @@ function tree (block, options, callback) {
     // leaf node
     if (trieNode.type === 'leaf') {
       let block = new IpfsBlock(trieNode.getValue())
-      IpldEthAccountSnapshotResolver.tree(block, options, (err, paths) => {
+      IpldEthTxResolver.tree(block, options, (err, paths) => {
         if (err) return callback(err)
         callback(null, paths)
       })
@@ -55,7 +55,7 @@ function tree (block, options, callback) {
           // node is leaf - continue to tree
           let key = child.key
           let block = new IpfsBlock(child.value)
-          IpldEthAccountSnapshotResolver.tree(block, options, (err, subpaths) => {
+          IpldEthTxResolver.tree(block, options, (err, subpaths) => {
             if (err) return next(err)
             subpaths.forEach((path) => {
               path.path = key + '/' + path.path
