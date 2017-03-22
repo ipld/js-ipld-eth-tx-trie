@@ -1,6 +1,6 @@
 {
   "name": "ipld-eth-tx-trie",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "JavaScript Implementation of the IPLD format - Ethereum Transaction Trie",
   "main": "src/index.js",
   "scripts": {
